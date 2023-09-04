@@ -1,11 +1,15 @@
 {% extends 'base.html' %}
+
 {% block title %}Home{% endblock %}
 {% block content %}
 <h1>Welcome to my website</h1>
 {% for post in posts %}
     <h2>{{post.title}}</h2>
-    <i>{{post.author.name}}</i>
-    <p>{% for tag in post.labels %}{{tag.name}}{% endfor %}</p>
+    <i><a href="/by/{{post.author.id}}">{{post.author.name}}</a></i>
+    <p>{% for tag in post.labels %}<a href="/tag/{{tag.name}}">{{tag.name}}      </a>{% endfor %}</p>
+    {% if post.image %}
+        <img src="static/pictures/{{post.image}}" />
+    {% endif %}
     <p>{{post.content}}</p>
     <hr />
 {% endfor %}
